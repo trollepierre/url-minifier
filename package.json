@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "startmon": "nodemon ./bin/www",
     "test": "NODE_ENV=test nyc mocha --recursive",
     "test:unit": "NODE_ENV=test mocha --recursive"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
     "express": "~4.16.0",
+    "handlebars-form-helpers": "^0.1.3",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
@@ -20,6 +23,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.0.5",
+    "nodemon": "^1.17.3",
     "nyc": "^11.6.0",
     "sinon": "^4.5.0",
     "sinon-chai": "^3.0.0",

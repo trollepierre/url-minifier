@@ -1,2 +1,9 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>URL Minifier</h1>
+<h2>By Pierre T</h2>
+{{#form "/api/urls" class="form"}}
+{{label "url" "Please enter your url"}}
+<br/>
+{{input "url" "http://myurl.com"}}
+<br/>
+{{submit "save" "Minify URL"}}
+{{/form}}

@@ -27,7 +27,7 @@ describe('Unit | Service | url-service', () => {
 
       // then
       expect(MyUrl.create).to.have.been.calledWith({ url: urlToMinify });
-      expect(res).to.deep.equal('http://minifiedUrl.com/b');
+      expect(res).to.deep.equal(`http://${process.env.API_URL}/b`);
     });
   });
 

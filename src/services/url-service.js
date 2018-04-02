@@ -1,11 +1,12 @@
 const { MyUrl } = require('../models/index');
 const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
 const base = alphabet.length;
+const config = require('../config');
 
 async function addUrl(url) {
   const createdUrl = await MyUrl.create({ url });
   const encodedId = encode(createdUrl.id);
-  return `http://minifiedUrl.com/${encodedId}`;
+  return `http://${config.API_URL}/${encodedId}`;
 }
 
 async function getUrl(encodedId) {

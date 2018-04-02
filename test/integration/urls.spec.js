@@ -25,7 +25,20 @@ describe('Integration | Routes | jobs route', () => {
           done(err);
         }
         expect(urlService.addUrl).to.have.been.called;
-        expect(res.body).to.deep.equal('http://minifyUrl');
+        expect(res.text).to.deep.equal(`<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Votre URL a bien été minifiée !</h1>
+<h2>Retrouvez-là ici :</h2>
+<a href="http://minifyUrl">http://minifyUrl</a>
+
+  </body>
+</html>
+`);
         done();
       });
   });

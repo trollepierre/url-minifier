@@ -8,6 +8,15 @@ const indexRouter = require('./src/routes/index');
 const urlsRouter = require('./src/routes/urls');
 const unminifyRouter = require('./src/routes/unminify');
 
+const hbs = require('hbs');
+const HandlebarsFormHelpers = require('handlebars-form-helpers')
+const Handlebars = hbs.handlebars;
+require('handlebars-form-helpers').register(hbs.handlebars);
+HandlebarsFormHelpers.register(Handlebars, {
+  namespace: 'custom',
+  validationErrorClass: 'custom-validation-class'
+});
+
 const app = express();
 
 // view engine setup
