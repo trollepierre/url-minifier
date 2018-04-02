@@ -10,13 +10,11 @@ async function addUrl(url) {
 }
 
 async function getUrl(originalUrl) {
-const encodedId = originalUrl.slice(1);
-
+  const encodedId = originalUrl.slice(1);
   const id = decode(encodedId);
   const savedUrl = await MyUrl.findOne({ where: { id } });
+  if(!savedUrl) return undefined;
   return savedUrl.url;
-
-
 }
 
 function encode(id) {

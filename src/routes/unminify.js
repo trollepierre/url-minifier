@@ -12,6 +12,9 @@ router.get('/', (req, res, next) => {
         res.redirect(minifiedUrl)
       }
     })
+    .catch(err => {
+      next(createError(404, err));
+    })
 });
 
 module.exports = router;
