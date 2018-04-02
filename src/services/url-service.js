@@ -1,6 +1,8 @@
+const { MyUrl } = require('../models/index');
 
 function minify(url) {
-  return 'minifiedUrl';
+  const urlMinified = 'http://minifiedUrl.com/AZ';
+  return MyUrl.create({ url: urlMinified });
 }
 
 module.exports = {
