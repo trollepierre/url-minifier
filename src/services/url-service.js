@@ -8,19 +8,34 @@ async function addUrl(url) {
   return `http://minifiedUrl.com/${encodedId}`;
 }
 
+async function getUrl(encodedId) {
+  const id = decode(encodedId);
+  const savedUrl = await MyUrl.findAll({ where: { id } });
+  return savedUrl.url;
+}
+
 function encode(id) {
   if (id === 0) {
     return alphabet[0];
   }
-  let encodedString = "";
+  let encodedId = "";
 
   while (id > 0) {
-    encodedString += alphabet[id % base];
+    encodedId += alphabet[id % base];
     id = parseInt(id / base, 10);
   }
-  return encodedString.split("").reverse().join("");
+  return encodedId.split("").reverse().join("");
+}
+
+function decode(encodedId) {
+  let decodedId = 0;
+  for (let i = 0; i < encodedId.length; i++) {
+    decodedId = decodedId * base + alphabet.indexOf(encodedId[i]);
+  }
+  return decodedId;
 }
 
 module.exports = {
-  addUrl: addUrl,
+  addUrl,
+  getUrl
 };

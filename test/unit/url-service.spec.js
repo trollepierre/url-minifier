@@ -30,5 +30,33 @@ describe('Unit | Service | url-service', () => {
       expect(res).to.deep.equal('http://minifiedUrl.com/b');
     });
   });
+
+  describe('#getUrl', () => {
+    beforeEach(() => {
+      sinon.stub(MyUrl, 'findAll');
+    });
+
+    afterEach(() => {
+      MyUrl.findAll.restore();
+    });
+
+    it('should call Sequelize Model#findAll', async () => {
+      // given
+      const encodedId = 'b';
+      const minifiedUrl = 'http://minifiedUrl.com/AZ';
+      const url = {
+        id: 1,
+        url: minifiedUrl
+      };
+      MyUrl.findAll.resolves(url);
+
+      // when
+      const res = await urlService.getUrl(encodedId);
+
+      // then
+      expect(MyUrl.findAll).to.have.been.calledWith({ where: {id:1} });
+      expect(res).to.deep.equal(minifiedUrl);
+    });
+  });
 });
 

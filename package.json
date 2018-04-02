@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start:real": "DEBUG=url:* npm start",
     "test": "NODE_ENV=test nyc mocha --recursive",
     "test:unit": "NODE_ENV=test mocha --recursive"
   },
