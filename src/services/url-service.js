@@ -9,10 +9,14 @@ async function addUrl(url) {
   return `http://${config.API_URL}/${encodedId}`;
 }
 
-async function getUrl(encodedId) {
+async function getUrl(originalUrl) {
+const encodedId = originalUrl.slice(1);
+
   const id = decode(encodedId);
-  const savedUrl = await MyUrl.findAll({ where: { id } });
+  const savedUrl = await MyUrl.findOne({ where: { id } });
   return savedUrl.url;
+
+
 }
 
 function encode(id) {

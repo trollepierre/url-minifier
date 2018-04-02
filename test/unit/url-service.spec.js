@@ -33,28 +33,28 @@ describe('Unit | Service | url-service', () => {
 
   describe('#getUrl', () => {
     beforeEach(() => {
-      sinon.stub(MyUrl, 'findAll');
+      sinon.stub(MyUrl, 'findOne');
     });
 
     afterEach(() => {
-      MyUrl.findAll.restore();
+      MyUrl.findOne.restore();
     });
 
-    it('should call Sequelize Model#findAll', async () => {
+    it('should call Sequelize Model#findOne', async () => {
       // given
-      const encodedId = 'b';
+      const encodedId = '/b';
       const minifiedUrl = 'http://minifiedUrl.com/AZ';
       const url = {
         id: 1,
         url: minifiedUrl
       };
-      MyUrl.findAll.resolves(url);
+      MyUrl.findOne.resolves(url);
 
       // when
       const res = await urlService.getUrl(encodedId);
 
       // then
-      expect(MyUrl.findAll).to.have.been.calledWith({ where: {id:1} });
+      expect(MyUrl.findOne).to.have.been.calledWith({ where: {id:1} });
       expect(res).to.deep.equal(minifiedUrl);
     });
   });

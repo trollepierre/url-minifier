@@ -22,10 +22,8 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-console.log('avant sync')
 // sync() will create all table if they doesn't exist in database
 models.sequelize.sync().then(() => {
-console.log('dans sync')
     /**
      * Listen on provided port, on all network interfaces.
      */
