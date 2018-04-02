@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "start:real": "DEBUG=url:* npm start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -11,6 +12,8 @@
     "express": "~4.16.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.5"
   }
 }
