@@ -3,7 +3,7 @@ const urlService = require('../../src/services/url-service');
 const { MyUrl } = require('../../src/models');
 
 describe('Unit | Service | url-service', () => {
-  describe('#minify', () => {
+  describe('#addUrl', () => {
     beforeEach(() => {
       sinon.stub(MyUrl, 'create');
     });
@@ -12,7 +12,7 @@ describe('Unit | Service | url-service', () => {
       MyUrl.create.restore();
     });
 
-    it('should call Sequelize Model#create', () => {
+    it('should call Sequelize Model#create', async () => {
       // given
       const urlToMinify = 'http://myurltominify';
       const minifiedUrl = 'http://minifiedUrl.com/AZ';
@@ -23,14 +23,11 @@ describe('Unit | Service | url-service', () => {
       MyUrl.create.resolves(url);
 
       // when
-      const promise = urlService.minify(urlToMinify);
+      const res = await urlService.addUrl(urlToMinify);
 
       // then
-
-      return promise.then((res) => {
-        expect(MyUrl.create).to.have.been.calledWith({url: minifiedUrl});
-        expect(res).to.deep.equal(url);
-      });
+      expect(MyUrl.create).to.have.been.calledWith({ url: urlToMinify });
+      expect(res).to.deep.equal('http://minifiedUrl.com/b');
     });
   });
 });

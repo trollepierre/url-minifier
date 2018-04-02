@@ -4,16 +4,16 @@ const urlService = require('../../src/services/url-service');
 
 describe('Integration | Routes | jobs route', () => {
   beforeEach(() => {
-    sinon.stub(urlService, 'minify');
+    sinon.stub(urlService, 'addUrl');
   });
 
   afterEach(() => {
-    urlService.minify.restore();
+    urlService.addUrl.restore();
   });
 
   it('should return minified url', (done) => {
     // given
-    urlService.minify.resolves('http://minifyUrl');
+    urlService.addUrl.resolves('http://minifyUrl');
 
     // when
     request(app)
@@ -24,7 +24,7 @@ describe('Integration | Routes | jobs route', () => {
         if (err) {
           done(err);
         }
-        expect(urlService.minify).to.have.been.called;
+        expect(urlService.addUrl).to.have.been.called;
         expect(res.body).to.deep.equal('http://minifyUrl');
         done();
       });

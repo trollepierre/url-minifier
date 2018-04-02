@@ -3,7 +3,7 @@ const router = express.Router();
 const urlService = require('../services/url-service');
 
 router.post('/', (req, res) => {
-  urlService.minify(req.url)
+  urlService.addUrl(req.url)
     .then((minifiedUrl) => {
       res.json(minifiedUrl)
     })
